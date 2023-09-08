@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Мій настрій</title>
+    <link rel="stylesheet" href="../style.css">	
+</head>
+
+<body>
+	<h1><a href="../index.html"> ← </a></h1>
+	<h1 align="center">Мій настрій</h1>
+	<br>
+    <div class="gallery-container">
+        <img class="gallery-image" src="../img/kotik1.png" alt="веселий настрій">
+        <img class="gallery-image" src="../img/kotik2.jpg" alt="сумний настрій">
+        <img class="gallery-image" src="../img/kotik3.png" alt="настрій зараз">
+        <p class="gallery-text">Мій настрій</p>
+        <div class="gallery-controls">
+            <button class="prev-button" onclick="prevImage()">←</button>
+            <button class="next-button" onclick="nextImage()">→</button>
+        </div>
+    </div>
+
+    <script>
+        var currentIndex = 0;
+        var images = document.querySelectorAll('.gallery-image');
+        var text = document.querySelector('.gallery-text');
+
+        function showImage(index) {
+            images[currentIndex].style.display = 'none';
+            currentIndex = index;
+            images[currentIndex].style.display = 'block';
+        }
+
+        function prevImage() {
+            var newIndex = currentIndex - 1;
+            if (newIndex < 0) {
+                newIndex = images.length - 1;
+            }
+            showImage(newIndex);
+            updateText();
+        }
+
+        function nextImage() {
+            var newIndex = currentIndex + 1;
+            if (newIndex >= images.length) {
+                newIndex = 0;
+            }
+            showImage(newIndex);
+            updateText();
+        }
+
+        function updateText() {
+            switch (currentIndex) {
+                case 0:
+                    text.textContent = 'веселий';
+                    break;
+                case 1:
+                    text.textContent = 'сумний';
+                    break;
+                case 2:
+                    text.textContent = 'зараз (релаксуючий)';
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        showImage(currentIndex);
+        updateText();
+    </script>
+		
+</body>
+</html>
